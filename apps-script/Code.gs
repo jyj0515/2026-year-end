@@ -16,7 +16,7 @@ const SERVICE_NAME = '올해도 거친 세상속에서 살아남았다';
 
 // 사이트를 웹에 올린 주소 (예: 'https://내아이디.github.io/2026_v/')
 // 메일에 들어갈 링크가 이 주소로 시작할 때만 신청을 받아요. (다른 사이트 링크를 넣은 스팸 방지)
-const SITE_URL = '';
+const SITE_URL = 'https://jyj0515.github.io/2026-year-end/';
 
 const SEND_JUNE = new Date('2027-06-01T09:00:00+09:00');
 const SEND_DEC = new Date('2027-12-01T09:00:00+09:00');
