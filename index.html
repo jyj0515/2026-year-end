@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>올해도 거친 세상속에서 살아남았다</title>
+<meta name="description" content="수고했어, 올해의 나. 올해를 돌아보고 내년의 작은 약속 3가지를 상장 카드로 남겨요.">
+<meta property="og:title" content="올해도 거친 세상속에서 살아남았다 · 수고했어. 올해의 나">
+<meta property="og:description" content="올해를 돌아보고 내년의 작은 약속 3가지를 상장 카드로 남겨요. 가입 없이 바로 시작!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  /* ---------- shadcn/ui zinc tokens ---------- */
+  :root {
+    --background: #E9E1CE;
+    --foreground: hsl(240 10% 3.9%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(240 10% 3.9%);
+    --muted: #F3EEE3;
+    --muted-foreground: #6E6656;
+    --accent: #F3EEE3;
+    --border: #D6CBB2;
+    --input: #D6CBB2;
+    --point: #CB513B;            /* 포인트 컬러 */
+    --primary: var(--point);
+    --primary-foreground: #FFFFFF;
+    --secondary: #DED4BE;
+    --secondary-foreground: hsl(240 5.9% 10%);
+    --destructive: hsl(0 72% 51%);
+    --ring: #CB513B;
+    --gold: var(--point);
+    --ok: hsl(142 71% 40%);
+    --so: hsl(38 92% 50%);
+    --re: hsl(0 72% 55%);
+    --radius: 0.625rem;
+    --bar-bg: rgba(233, 225, 206, .85);
+    --art-bg: transparent;
+    color-scheme: light;
+  }
+  /* ---------- base ---------- */
+  *, *::before, *::after { box-sizing: border-box; border-color: var(--border); }
+  html, body { margin: 0; }
+  [hidden] { display: none !important; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "Geist", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: anywhere; /* 띄어쓰기 없는 긴 글도 칸 안에서 줄바꿈 */
+    transition: background-color .2s, color .2s;
+  }
+  .i { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .container { max-width: 430px; margin: 0 auto; padding: 0 16px; }
+  .muted { color: var(--muted-foreground); }
+
+  /* ---------- header ---------- */
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    border-bottom: 1px solid var(--border);
+    background: var(--bar-bg);
+    backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px);
+  }
+  header.site .container { height: 56px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+  .header-actions { display: flex; align-items: center; gap: 6px; }
+
+  /* ---------- button ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 36px; padding: 0 16px; border-radius: calc(var(--radius) - 2px);
+    font: inherit; font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer;
+    border: 1px solid transparent; text-decoration: none;
+    transition: background-color .15s, color .15s, border-color .15s, opacity .15s, transform .05s;
+    outline: none;
+  }
+  .btn:focus-visible { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled, .btn[aria-disabled=true] { opacity: .5; pointer-events: none; }
+  .btn-primary { background: var(--primary); color: var(--primary-foreground); box-shadow: 0 1px 2px rgba(203,81,59,.25); }
+  .btn-primary:hover { opacity: .9; }
+  .btn-outline { background: var(--background); color: var(--foreground); border-color: var(--input); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .btn-outline:hover { background: var(--accent); }
+  .btn-point-outline { background: #fff; color: var(--point); border-color: var(--point); }
+  .btn-point-outline:hover { background: color-mix(in srgb, var(--point) 6%, #fff); }
+  .btn-secondary { background: var(--secondary); color: var(--secondary-foreground); }
+  .btn-secondary:hover { opacity: .85; }
+  .btn-ghost { background: transparent; color: var(--foreground); }
+  .btn-ghost:hover { background: var(--accent); }
+  .btn-sm { height: 32px; padding: 0 12px; font-size: 13px; }
+  .btn-lg { height: 44px; padding: 0 20px; font-size: 15px; }
+  .btn-icon { width: 36px; padding: 0; }
+  .btn-icon.btn-sm { width: 32px; }
+  .btn.danger { color: var(--destructive); border-color: color-mix(in srgb, var(--destructive) 40%, transparent); }
+
+  /* ---------- badge ---------- */
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    border-radius: 999px; border: 1px solid var(--border);
+    padding: 2px 10px; font-size: 12px; font-weight: 500; line-height: 18px;
+    color: var(--foreground); background: var(--background); white-space: nowrap;
+  }
+  .badge-secondary { background: color-mix(in srgb, var(--point) 12%, var(--card)); border-color: transparent; color: var(--point); font-weight: 600; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .dot.good { background: var(--ok); } .dot.so { background: var(--so); } .dot.bad { background: var(--re); }
+
+  /* ---------- card ---------- */
+  .card { background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .card-header { padding: 20px 20px 0; }
+  .card-title { font-size: 15px; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; margin: 0; }
+  .card-desc { font-size: 13px; color: var(--muted-foreground); margin: 4px 0 0; }
+  .card-content { padding: 16px 20px 20px; }
+  .card + .card { margin-top: 12px; }
+  .separator { height: 1px; background: var(--border); border: 0; margin: 0; }
+
+  /* ---------- form ---------- */
+  .label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; }
+  .textarea, .input {
+    width: 100%; display: block;
+    border: 1px solid var(--input); border-radius: calc(var(--radius) - 2px);
+    background: transparent; color: var(--foreground);
+    padding: 8px 12px; font: inherit; font-size: 16px; line-height: 1.5;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    outline: none; resize: none; transition: border-color .15s, box-shadow .15s;
+  }
+  .input { height: 40px; }
+  .textarea { min-height: 76px; }
+  .textarea:focus-visible, .input:focus-visible { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 35%, transparent); }
+  .textarea::placeholder, .input::placeholder { color: var(--muted-foreground); opacity: .8; }
+  .input:disabled { opacity: .5; cursor: not-allowed; }
+  .field-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; min-height: 18px; }
+  .counter { font-family: "Geist Mono", ui-monospace, monospace; font-size: 11px; color: var(--muted-foreground); margin-left: auto; }
+  .error { color: var(--destructive); font-size: 12.5px; display: none; }
+  .error.show { display: block; }
+  .invalid .textarea, .invalid .input:first-of-type { border-color: var(--destructive); }
+  .goal-row { display: flex; align-items: center; gap: 10px; }
+  .goal-row + .goal-row { margin-top: 8px; }
+  .goal-field { position: relative; flex: 1; min-width: 0; }
+  .goal-field .input { padding-right: 52px; }
+  .goal-field .counter { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+  .counter.full { color: var(--destructive); }
+  .num {
+    flex: none; width: 24px; height: 24px; border-radius: 999px;
+    border: 1px solid var(--point); background: var(--point);
+    font-family: "Geist Mono", ui-monospace, monospace; font-size: 12px; font-weight: 600;
+    display: grid; place-items: center; color: #fff;
+  }
+
+  /* ---------- layout ---------- */
+  main.container { padding: 24px 16px calc(96px + env(safe-area-inset-bottom)); }
+  .screen { display: none; }
+  .screen.active { display: block; animation: in .3s cubic-bezier(.2,.8,.2,1); }
+  @keyframes in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .page-head { margin-bottom: 20px; }
+  .h1 { font-size: 26px; font-weight: 700; letter-spacing: -.035em; line-height: 1.25; margin: 0 0 8px; }
+  .lead { font-size: 14.5px; color: var(--muted-foreground); margin: 0; line-height: 1.65; }
+
+  /* stepper */
+  .stepper { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+  .step { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--muted-foreground); }
+  .step .num { width: 22px; height: 22px; font-size: 11px; }
+  .step.active { color: var(--foreground); }
+  .step:not(.active):not(.done) .num { background: var(--card); border-color: var(--border); color: var(--muted-foreground); }
+  .step.active .num { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+  .step.done .num { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+  .step-line { flex: 1; height: 1px; background: var(--border); }
+  .progress { height: 4px; border-radius: 999px; background: var(--secondary); overflow: hidden; margin: -8px 0 24px; }
+  .progress > div { height: 100%; background: var(--primary); width: 50%; transition: width .4s cubic-bezier(.2,.8,.2,1); }
+
+  /* hero */
+  .hero {
+    text-align: center; padding: 0;
+    /* 헤더(56) + main 위아래 여백(24 + 하단 바 공간)을 뺀 높이 안에서 세로 가운데 */
+    /* 헤더(57) 아래 ~ 하단 바(69) 위 공간을 정확히 채움 → 그 안에서 세로 가운데 */
+    min-height: calc(100dvh - 57px - 69px - env(safe-area-inset-bottom));
+    margin: -24px 0 -27px;
+    padding: 16px 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+  .hero-art { width: fit-content; margin: 0 auto 24px; border-radius: 20px; background: var(--art-bg); overflow: hidden; }
+  .hero-art img { display: block; width: 240px; max-width: 100%; height: auto; margin: 0 auto; }
+  .hero .h1 { font-size: 40px; letter-spacing: -.045em; line-height: 1.15; margin: 18px 0 16px; }
+  .hero .lead { max-width: none; margin: 0 auto; }
+
+  /* result card */
+  .award { position: relative; overflow: hidden; }
+  .award::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--gold) 12%, transparent), transparent 60%);
+  }
+  .award-top { position: relative; text-align: center; padding: 28px 20px 20px; }
+  .award-art { display: block; width: 200px; max-width: 100%; height: auto; margin: 0 auto 14px; }
+  .award-eyebrow { font-family: "Geist Mono", ui-monospace, monospace; font-size: 11.5px; font-weight: 500; letter-spacing: .2em; color: var(--muted-foreground); }
+  .award-msg { font-size: 13px; color: var(--muted-foreground); max-width: 300px; margin: 12px auto 0; line-height: 1.6; }
+  .award-msg { max-width: none; }
+  .m-br { display: none; }
+  @media (max-width: 420px) { .m-br { display: inline; } }
+  .award-body { position: relative; padding: 20px; }
+  .item + .item { margin-top: 20px; }
+  .item-k { font-size: 12px; font-weight: 500; color: var(--muted-foreground); margin-bottom: 4px; }
+  .item-v { font-size: 15px; font-weight: 500; white-space: pre-wrap; line-height: 1.55; }
+  .item-v.big { font-size: 22px; font-weight: 700; letter-spacing: -.03em; line-height: 1.35; }
+  .goals { list-style: none; margin: 8px 0 0; padding: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .goals li { display: flex; gap: 12px; align-items: flex-start; padding: 12px; }
+  .goals li + li { border-top: 1px solid var(--border); }
+  .goals .t { font-size: 14px; font-weight: 500; line-height: 24px; }
+  .goals li > div { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+  .goals .badge { margin-top: 6px; }
+  .award-foot { position: relative; display: flex; justify-content: flex-end; align-items: center; padding: 12px 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted-foreground); }
+  .award-foot .mono { font-family: "Geist Mono", ui-monospace, monospace; }
+  .closing { text-align: center; margin: 24px 0 16px; }
+  .closing b { display: block; font-size: 16px; font-weight: 600; letter-spacing: -.02em; }
+  .closing span { font-size: 13px; color: var(--muted-foreground); }
+  .row { display: flex; gap: 8px; }
+  .row .btn { flex: 1; }
+
+  /* remind */
+  .section-title { font-size: 18px; font-weight: 600; letter-spacing: -.025em; margin: 40px 0 4px; }
+  .section-desc { font-size: 13.5px; color: var(--muted-foreground); margin: 0 0 16px; }
+  .date-row { display: flex; align-items: flex-start; gap: 12px; padding: 16px; }
+  .date-row + .date-row { border-top: 1px solid var(--border); }
+  .date-icon { flex: none; width: 44px; height: 42px; border: 1px solid var(--foreground); border-radius: 7px; overflow: hidden; text-align: center; background: var(--card); display: flex; flex-direction: column; }
+  .date-icon .m { background: var(--foreground); font-size: 8px; font-weight: 600; letter-spacing: -.01em; height: 14px; line-height: 14px; color: #fff; }
+  .date-icon .d { flex: 1; font-size: 16px; font-weight: 700; line-height: 26px; letter-spacing: -.02em; color: var(--foreground); }
+  .date-info { flex: 1; min-width: 0; }
+  .date-info b { display: block; font-size: 14px; font-weight: 600; line-height: 20px; }
+  .date-info p { margin: 2px 0 10px; font-size: 13px; line-height: 20px; color: var(--muted-foreground); }
+  .date-info .row { flex-wrap: wrap; }
+  .date-info .row .btn { flex: none; }
+  .email-line { display: flex; gap: 8px; }
+  .email-line .input { flex: 1; min-width: 0; }
+  /* 안내 박스: 배경과 거의 같은 톤으로 눌러서 덜 튀게 */
+  .consent { display: flex; align-items: flex-start; gap: 8px; margin-top: 12px; font-size: 13px; line-height: 1.5; cursor: pointer; }
+  .consent input { margin: 2px 0 0; width: 16px; height: 16px; accent-color: var(--point); flex: none; }
+  .consent b { color: var(--point); font-weight: 600; }
+  .consent-detail { margin: 6px 0 0 24px; font-size: 12px; color: var(--muted-foreground); }
+  .consent-detail summary { cursor: pointer; width: fit-content; text-decoration: underline; text-underline-offset: 2px; }
+  .consent-detail ul { margin: 6px 0 0; padding-left: 16px; line-height: 1.6; }
+  #emailError { margin: 8px 0 0; }
+  #emailError:empty { display: none; }
+  #emailError:not(:empty) { display: block; }
+  .email-done { display: flex; gap: 10px; }
+  .email-done > .i { color: var(--ok); margin-top: 2px; }
+  .email-done b { display: block; font-size: 14px; font-weight: 600; word-break: break-all; }
+  .email-done p { margin: 4px 0 10px; font-size: 13px; color: var(--muted-foreground); line-height: 1.6; }
+  .alert { display: flex; gap: 10px; border: 0; border-radius: var(--radius); padding: 12px 14px; margin-top: 24px; background: rgba(110, 102, 86, .07); }
+  .alert .i { margin-top: 2px; width: 14px; height: 14px; color: #8C836F; }
+  .alert b { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 2px; color: #6E6656; }
+  .alert p { margin: 0; font-size: 12px; color: #8C836F; line-height: 1.6; }
+
+  /* toggle group */
+  .toggle-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--input); border-radius: calc(var(--radius) - 2px); overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .toggle { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; border: 0; background: transparent; color: var(--muted-foreground); font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: background-color .15s, color .15s; }
+  .toggle + .toggle { border-left: 1px solid var(--input); }
+  .toggle:hover { background: var(--accent); color: var(--foreground); }
+  .toggle[aria-pressed=true] { background: var(--accent); color: var(--foreground); font-weight: 600; }
+  .toggle .dot { opacity: .35; }
+  .toggle[aria-pressed=true] .dot { opacity: 1; }
+  .goal-title { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 500; line-height: 24px; margin-bottom: 12px; }
+  .empty { text-align: center; padding: 48px 16px; border: 1px dashed var(--border); border-radius: var(--radius); color: var(--muted-foreground); }
+
+  /* bottom bar */
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; border-top: 1px solid var(--border); background: var(--bar-bg); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); padding: 12px 0 calc(12px + env(safe-area-inset-bottom)); }
+  .bar .container { display: flex; gap: 8px; }
+  /* 첫 화면에서는 헤더·하단 바 구분선 숨김 */
+  body.on-start header.site { border-bottom-color: transparent; }
+  body.on-start .bar { border-top-color: transparent; }
+  .bar .btn { flex: 1; }
+  .bar .btn-outline { flex: 0 0 32%; }
+
+  /* dialog */
+  .dialog-backdrop { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.4); display: grid; place-items: center; padding: 16px; }
+  .dialog-backdrop[hidden] { display: none; }
+  .dialog { width: 100%; max-width: 398px; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+
+  /* toast (sonner) */
+  .toast {
+    position: fixed; left: 50%; bottom: 92px; z-index: 30; transform: translate(-50%, 12px);
+    display: flex; align-items: center; gap: 8px;
+    background: var(--card); color: var(--foreground); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 12px 16px; font-size: 13.5px; font-weight: 500; white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08); opacity: 0; pointer-events: none; transition: opacity .2s, transform .25s cubic-bezier(.2,.8,.2,1);
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .toast .i { color: var(--ok); }
+
+  .shake { animation: shake .3s; }
+  @keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+  @media (prefers-reduced-motion: reduce) { .screen.active, .shake { animation: none; } }
+  @media (max-width: 480px) {
+    .hero-art { margin-bottom: 16px; }
+    .hero-art img { width: 200px; }
+    .hero .h1 { font-size: 32px; margin: 14px 0 12px; }
+    .hero .lead { font-size: 13.5px; line-height: 1.7; letter-spacing: -.01em; }
+  }
+  @media (max-width: 480px) and (max-height: 700px) {
+    .hero-art img { width: 160px; }
+    .hero .h1 { font-size: 28px; }
+  }
+  @media (max-width: 360px) { .hero .h1 { font-size: 34px; } }
+</style>
+</head>
+<body>
+<!-- lucide icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+  <symbol id="i-calendar-plus" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8"/><path d="M3 10h18"/><path d="M16 19h6"/><path d="M19 16v6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+</svg>
+
+<header class="site">
+  <div class="container">
+    <div class="header-actions">
+      <button class="btn btn-outline btn-sm" id="resetBtn" type="button"><svg class="i"><use href="#i-plus"/></svg><span>새 기록 작성</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div id="progressWrap" hidden>
+    <div class="stepper">
+      <div class="step" data-p="1"><span class="num">1</span>올해 돌아보기</div>
+      <div class="step-line"></div>
+      <div class="step" data-p="2"><span class="num">2</span>내년 목표</div>
+    </div>
+    <div class="progress"><div id="progressFill"></div></div>
+  </div>
+
+  <!-- 시작 -->
+  <section class="screen" id="s-start">
+    <div class="hero">
+      <div class="hero-art"><img src="assets/main.svg" width="192" height="164" alt="올해도 거친 세상 속에서 살아남았다 — 거북이와 토끼 일러스트"></div>
+      <p class="lead">눈 깜짝할 새 지나간 2026년.<br>올해는 뭘 했나 싶어도, 평범했던 하루에도<br>작은 기쁨과 칭찬할 순간들이 숨어 있어요.<br>소소한 일상을 돌아보고, 올해의 나에게 따뜻한 박수를 보내요.</p>
+    </div>
+  </section>
+
+  <!-- 1단계 -->
+  <section class="screen" id="s-step1">
+    <div class="page-head">
+      <h1 class="h1">돌아보니,<br>꽤 괜찮은 한 해였어요.</h1>
+      <p class="lead">특별한 일이 없어도 괜찮아요. 올해의 나를 하나씩 떠올려봐요. 평범했던 하루 속에도 웃었던 순간, 나름 뿌듯했던 일들이 있었을 거예요.</p>
+    </div>
+
+    <div class="card" id="q-word">
+      <div class="card-header">
+        <h2 class="card-title">Q1. 올해의 나를 한마디로 표현한다면?</h2>
+        <p class="card-desc">바쁘게 지나온 2026년, 나는 어떤 모습이었나요?</p>
+      </div>
+      <div class="card-content">
+        <textarea class="textarea" id="word" data-key="word" maxlength="30" rows="2" aria-label="올해의 나 한마디" placeholder="예) 버티기 성공! 정신없었지만 나름 잘 살아냈다."></textarea>
+        <div class="field-foot"><span class="error" id="hint-word">올해의 나를 한마디만 적어 주세요. 짧아도 괜찮아요.</span><span class="counter" data-for="word"></span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q2. 올해 나에게 칭찬해 주고 싶은 일은?</h2>
+        <p class="card-desc">사소한 일도 좋아요. 나름 잘했다고 생각한 순간을 떠올려봐요.</p>
+      </div>
+      <div class="card-content">
+        <textarea class="textarea" id="good" data-key="good" maxlength="60" aria-label="칭찬해 주고 싶은 일" placeholder="예) 운동을 꾸준히 하진 못했지만 시작이라도 해봤다."></textarea>
+        <div class="field-foot"><span class="counter" data-for="good"></span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q3. 올해 조금 아쉬웠던 일이 있다면?</h2>
+        <p class="card-desc">괜찮아요. 못 해낸 일보다 잘해온 날들이 더 중요하니까요.</p>
+      </div>
+      <div class="card-content">
+        <textarea class="textarea" id="bad" data-key="bad" maxlength="60" aria-label="아쉬웠던 일" placeholder="예) 운동을 꾸준히 하려고 했는데 작심삼일로 끝났다. 내년에는 주3회 이상 꾸준하게 하기!"></textarea>
+        <div class="field-foot"><span class="counter" data-for="bad"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2단계 -->
+  <section class="screen" id="s-step2">
+    <div class="page-head">
+      <h1 class="h1">내년에도 나답게,<br>하나씩!</h1>
+      <p class="lead">새해에는 어떻게 보내고 싶으신가요? 거창한 목표가 아니어도 괜찮아요. 나를 조금 더 행복하게 해줄 작은 약속 3가지를 정해봐요.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q1. 내년에는 어떤 내가 되고 싶나요?</h2>
+        <p class="card-desc">2027년, 내가 바라는 나의 모습을 떠올려봐요.</p>
+      </div>
+      <div class="card-content">
+        <textarea class="textarea" id="nextWord" data-key="nextWord" maxlength="40" rows="2" aria-label="내년에 되고 싶은 나" placeholder="예) 걱정은 조금 덜고, 웃으며 긍정적으로!"></textarea>
+        <div class="field-foot"><span class="counter" data-for="nextWord"></span></div>
+      </div>
+    </div>
+    <div class="card" id="q-goals">
+      <div class="card-header">
+        <h2 class="card-title">Q2. 내년에 나를 위해 해보고 싶은 3가지</h2>
+        <p class="card-desc">작고 사소한 목표도 좋아요. 부담 없이 시작해 봐요. <span style="white-space:nowrap">(각 25자 이내)</span></p>
+      </div>
+      <div class="card-content">
+        <div class="goal-row"><span class="num">1</span><div class="goal-field"><input class="input" type="text" id="goal0" data-goal="0" maxlength="25" aria-label="목표 1" placeholder="예) 일주일에 2번, 30분씩 산책하기"><span class="counter" data-for="goal0"></span></div></div>
+        <div class="goal-row"><span class="num">2</span><div class="goal-field"><input class="input" type="text" id="goal1" data-goal="1" maxlength="25" aria-label="목표 2" placeholder="예) 새로운 취미 하나 시작하기"><span class="counter" data-for="goal1"></span></div></div>
+        <div class="goal-row"><span class="num">3</span><div class="goal-field"><input class="input" type="text" id="goal2" data-goal="2" maxlength="25" aria-label="목표 3" placeholder="예) 한 달에 5만 원씩 저축하기"><span class="counter" data-for="goal2"></span></div></div>
+        <div class="field-foot"><span class="error" id="hint-goals">작은 약속을 하나 이상 적어 주세요.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 결과 -->
+  <section class="screen" id="s-result">
+    <article class="card award" id="card">
+      <div class="award-top">
+        <img class="award-art" src="assets/card.svg" width="188" height="130" alt="수고했어 올해도 — 건배하는 거북이와 토끼 일러스트">
+        <p class="award-msg">별일 없이 지나간 것 같아도,<br>나만의 속도로 여기까지 잘 걸어왔어요.<br class="m-br"> 내년에도 나답게, 화이팅!</p>
+      </div>
+      <hr class="separator">
+      <div class="award-body">
+        <div class="item"><div class="item-k">올해의 나</div><div class="item-v big" id="r-word"></div></div>
+        <div class="item" id="r-good-wrap"><div class="item-k">올해의 작은 성취</div><div class="item-v" id="r-good"></div></div>
+        <div class="item" id="r-next-wrap"><div class="item-k">내년의 나에게</div><div class="item-v" id="r-next"></div></div>
+        <div class="item"><div class="item-k">내년에 해보고 싶은 3가지</div><ul class="goals" id="r-goals"></ul></div>
+      </div>
+      <div class="award-foot"><span><span class="mono" id="r-date"></span>에 작성</span></div>
+    </article>
+
+    <div class="closing">
+      <b>2027년에도 나답게, 하나씩!</b>
+      <span>내년의 소소한 순간들도 기대할게요.</span>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-point-outline btn-lg" id="editBtn" type="button"><svg class="i"><use href="#i-pencil"/></svg>다시 수정하기</button>
+      <button class="btn btn-primary btn-lg" id="copyBtn" type="button"><svg class="i"><use href="#i-copy"/></svg>내 기록 복사하기</button>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="card-header">
+        <h3 class="card-title" style="display:flex;align-items:center;gap:8px"><svg class="i"><use href="#i-link"/></svg>내 기록 링크</h3>
+        <p class="card-desc">이 링크를 열면 다른 기기에서도, 내년에도 기록이 그대로 이어져요. 내 기록이 담겨 있으니 나만 보관해 주세요.</p>
+      </div>
+      <div class="card-content">
+        <div class="row">
+          <button class="btn btn-primary" id="myLinkBtn" type="button"><svg class="i"><use href="#i-link"/></svg>내 기록 링크 복사</button>
+          <button class="btn btn-point-outline" id="shareBtn" type="button"><svg class="i"><use href="#i-share"/></svg>친구에게 공유</button>
+        </div>
+        <p class="card-desc" style="margin-top:10px">친구에게는 기록 없이 빈 페이지 링크만 보내져요.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">내년의 나에게 다시 알려줄게요</h2>
+    <p class="section-desc">오늘 세운 목표를 잊지 않도록, 한 해의 중간과 끝에 다시 전해드릴게요. 캘린더 일정에는 내 기록 링크가 함께 담겨요.</p>
+
+    <div class="card">
+      <div class="date-row">
+        <div class="date-icon"><div class="m">2027.06</div><div class="d">1</div></div>
+        <div class="date-info">
+          <b>2027년 6월 1일</b>
+          <p>목표를 잘 실천하고 있는지 돌아보는 날</p>
+          <div class="row">
+            <a class="btn btn-point-outline btn-sm" id="cal-jun" target="_blank" rel="noopener"><svg class="i"><use href="#i-calendar-plus"/></svg>캘린더에 추가</a>
+            <button class="btn btn-primary btn-sm" id="junNow" type="button">지금 돌아보기<svg class="i"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="date-row">
+        <div class="date-icon"><div class="m">2027.12</div><div class="d">1</div></div>
+        <div class="date-info">
+          <b>2027년 12월 1일</b>
+          <p>올해도 얼마나 해냈는지 확인하는 날</p>
+          <div class="row">
+            <a class="btn btn-point-outline btn-sm" id="cal-dec" target="_blank" rel="noopener"><svg class="i"><use href="#i-calendar-plus"/></svg>캘린더에 추가</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="emailCard">
+      <div class="card-header">
+        <h3 class="card-title" style="display:flex;align-items:center;gap:8px"><svg class="i"><use href="#i-mail"/></svg>이메일로 받기 <span class="badge badge-secondary" id="emailBadge">준비 중</span></h3>
+        <p class="card-desc" id="emailDesc">메일 발송 기능을 준비하고 있어요. 지금은 캘린더에 추가해 두세요.</p>
+      </div>
+      <div class="card-content">
+        <form id="emailForm" novalidate>
+          <div class="email-line">
+            <input class="input" type="email" id="email" placeholder="email@example.com" aria-label="이메일" autocomplete="email" maxlength="254" disabled>
+            <button class="btn btn-primary" id="emailSubmit" type="submit" disabled>알림 신청</button>
+          </div>
+          <input type="text" id="emailHp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+          <label class="consent">
+            <input type="checkbox" id="consent" disabled>
+            <span><b>[필수]</b> 메일 발송을 위한 개인정보 수집·이용에 동의해요</span>
+          </label>
+          <details class="consent-detail">
+            <summary>자세히 보기</summary>
+            <ul>
+              <li><b>수집 항목</b>: 이메일, 2027년의 나에게, 2027년 목표 3가지, 내 기록 링크</li>
+              <li><b>이용 목적</b>: 2027년 6월 1일·12월 1일 오전 9시 점검 메일 발송</li>
+              <li><b>보관 기간</b>: 2027년 12월 메일 발송 후 바로 삭제. 메일 속 '수신 거부'를 누르면 즉시 삭제</li>
+              <li>동의하지 않아도 서비스는 그대로 쓸 수 있어요. 메일만 받을 수 없어요.</li>
+            </ul>
+          </details>
+          <p class="error" id="emailError" role="alert"></p>
+        </form>
+        <div class="email-done" id="emailDone" hidden>
+          <svg class="i"><use href="#i-check-circle"/></svg>
+          <div>
+            <b><span id="emailDoneAddr"></span>로 신청했어요</b>
+            <p>2027년 6월 1일, 12월 1일 오전 9시에 보내 드릴게요. 기록을 고쳤다면 다시 신청해 주세요. 최신 내용으로 바뀌어요.</p>
+            <button class="btn btn-point-outline btn-sm" id="emailChange" type="button">다시 신청하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert" role="note">
+      <svg class="i"><use href="#i-info"/></svg>
+      <div>
+        <b>서버에 저장하지 않아요</b>
+        <p>기록은 이 기기의 브라우저와 '내 기록 링크' 안에만 있어요. 브라우저 기록이 지워져도 내 기록 링크나 캘린더 일정의 링크를 열면 다시 불러올 수 있어요.<span id="alertMail" hidden> 단, 메일 알림을 신청하면 이메일과 2027년 목표가 메일 발송용으로 저장되고, 2027년 12월 메일 발송 후 삭제돼요.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6월 돌아보기 -->
+  <section class="screen" id="s-june">
+    <div class="page-head">
+      <span class="badge" style="margin-bottom:14px"><span class="dot" style="background:var(--gold)"></span>2027 · 6월 중간 돌아보기</span>
+      <h1 class="h1">지금까지 잘 해내고 있나요?</h1>
+      <p class="lead">목표마다 지금 상태를 골라 주세요. 다시 시작해도 괜찮아요.</p>
+    </div>
+    <div id="june-list"></div>
+  </section>
+</main>
+
+<div class="bar" id="bar"><div class="container" id="barInner"></div></div>
+<div class="dialog-backdrop" id="importDlg" hidden>
+  <div class="card dialog" role="dialog" aria-modal="true" aria-labelledby="importTitle">
+    <div class="card-header">
+      <h3 class="card-title" id="importTitle">링크에 담긴 기록을 불러올까요?</h3>
+      <p class="card-desc">이 기기에 이미 다른 기록이 있어요. 불러오면 지금 기록이 링크의 기록으로 바뀌어요.</p>
+    </div>
+    <div class="card-content">
+      <div class="row">
+        <button class="btn btn-outline" id="importNo" type="button">지금 기록 유지</button>
+        <button class="btn btn-primary" id="importYes" type="button">불러오기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"><svg class="i"><use href="#i-check-circle"/></svg><span id="toastMsg"></span></div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'myaward-2026';
+  // 점검 메일: Apps Script 웹앱 배포 주소 (SETUP_EMAIL.md 참고). 비워 두면 '준비 중'으로 비활성화돼요.
+  var SUBSCRIBE_URL = '';
+  var STATUS = { good: '잘 지키는 중', so: '그럭저럭', bad: '다시 시작' };
+  var icon = function (name) { return '<svg class="i"><use href="#i-' + name + '"/></svg>'; };
+  var empty = function () {
+    return { word: '', good: '', bad: '', nextWord: '', goals: ['', '', ''], checks: { jun: [null, null, null] }, step: 'start', doneAt: null };
+  };
+
+  // ---- storage ----
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return empty();
+      var d = Object.assign(empty(), JSON.parse(raw));
+      if (!Array.isArray(d.goals)) d.goals = ['', '', ''];
+      if (!d.checks || !Array.isArray(d.checks.jun)) d.checks = { jun: [null, null, null] };
+      return d;
+    } catch (e) { return empty(); }
+  }
+  var saveTimer;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    }, 200);
+  }
+  var state = load();
+
+  // ---- 링크에 기록 담기 (#r=...) ----
+  var BASE_URL = location.href.split('#')[0];
+  var LIMITS = { word: 30, good: 60, bad: 60, nextWord: 40, goal: 25 };
+  function toB64Url(str) {
+    var bytes = new TextEncoder().encode(str), bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  function fromB64Url(b64) {
+    var bin = atob(b64.replace(/-/g, '+').replace(/_/g, '/'));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+  function encodeRecord(st) {
+    return toB64Url(JSON.stringify({ v: 1, w: st.word, g: st.good, b: st.bad, n: st.nextWord, l: st.goals, c: st.checks.jun, d: st.doneAt }));
+  }
+  function decodeRecord(code) {
+    try {
+      var o = JSON.parse(fromB64Url(code));
+      var str = function (x, max) { return typeof x === 'string' ? x.slice(0, max) : ''; };
+      var goals = Array.isArray(o.l) ? o.l : [];
+      var checks = Array.isArray(o.c) ? o.c : [];
+      var rec = empty();
+      rec.word = str(o.w, LIMITS.word); rec.good = str(o.g, LIMITS.good); rec.bad = str(o.b, LIMITS.bad); rec.nextWord = str(o.n, LIMITS.nextWord);
+      rec.goals = [0, 1, 2].map(function (i) { return str(goals[i], LIMITS.goal); });
+      rec.checks.jun = [0, 1, 2].map(function (i) { return ['good', 'so', 'bad'].indexOf(checks[i]) >= 0 ? checks[i] : null; });
+      rec.doneAt = typeof o.d === 'string' && !isNaN(Date.parse(o.d)) ? o.d : new Date().toISOString();
+      rec.step = 'result';
+      if (!rec.word.trim() || !rec.goals.some(function (g) { return g.trim(); })) return null;
+      return rec;
+    } catch (e) { return null; }
+  }
+  function myLink(extra) { return BASE_URL + '#' + (extra ? extra + '&' : '') + 'r=' + encodeRecord(state); }
+
+  // 주소에 담긴 기록 읽고, 주소창에서는 바로 지우기 (주소창 복사로 기록이 퍼지지 않게)
+  var hashParams = new URLSearchParams(location.hash.slice(1));
+  var wantJune = hashParams.has('june');
+  var linkRecord = hashParams.get('r') ? decodeRecord(hashParams.get('r')) : null;
+  if (location.hash) { try { history.replaceState(null, '', BASE_URL); } catch (e) {} }
+  var sameRecord = function (a, b) { return encodeRecord(a) === encodeRecord(b); };
+  var pendingImport = null;
+  if (linkRecord) {
+    if (!state.doneAt || sameRecord(state, linkRecord)) { state = linkRecord; try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+    else pendingImport = linkRecord;
+  }
+
+  // ---- helpers ----
+  var $ = function (id) { return document.getElementById(id); };
+  var trim = function (s) { return (s || '').trim(); };
+  var filledGoals = function () { return state.goals.map(trim).filter(Boolean); };
+  function toast(msg) {
+    var t = $('toast'); $('toastMsg').textContent = msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+  function nudge(boxId, hintId) {
+    var box = $(boxId); $(hintId).classList.add('show'); box.classList.add('invalid');
+    box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function clearHint(boxId, hintId) { $(hintId).classList.remove('show'); $(boxId).classList.remove('invalid'); }
+  function updateCounter(el) {
+    var c = document.querySelector('.counter[data-for="' + el.id + '"]');
+    if (c) { c.textContent = el.value.length + '/' + el.maxLength; c.classList.toggle('full', el.value.length >= el.maxLength); }
+  }
+
+  // ---- bind inputs ----
+  document.querySelectorAll('[data-key]').forEach(function (el) {
+    el.value = (state[el.dataset.key] || '').slice(0, el.maxLength);
+    state[el.dataset.key] = el.value;
+    updateCounter(el);
+    el.addEventListener('input', function () {
+      state[el.dataset.key] = el.value; save(); updateCounter(el);
+      if (el.id === 'word' && trim(el.value)) clearHint('q-word', 'hint-word');
+    });
+  });
+  document.querySelectorAll('[data-goal]').forEach(function (el) {
+    var i = +el.dataset.goal;
+    el.value = (state.goals[i] || '').slice(0, el.maxLength);
+    state.goals[i] = el.value;
+    updateCounter(el);
+    el.addEventListener('input', function () {
+      state.goals[i] = el.value; save(); updateCounter(el);
+      if (filledGoals().length) clearHint('q-goals', 'hint-goals');
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); var n = $('goal' + (i + 1)); n ? n.focus() : el.blur(); }
+    });
+  });
+
+  // ---- navigation ----
+  var BARS = {
+    start:  [{ html: '나만의 송년회 시작하기' + icon('arrow-right'), go: 'step1' }],
+    step1:  [{ html: '다음' + icon('arrow-right'), go: 'step2', check: function () { if (!trim(state.word)) { nudge('q-word', 'hint-word'); return false; } return true; } }],
+    step2:  [{ html: icon('arrow-left') + '이전', go: 'step1', sub: true },
+             { html: '수고한 나를 위해 치얼스 🥂', go: 'result', check: function () { if (!filledGoals().length) { nudge('q-goals', 'hint-goals'); return false; } state.doneAt = state.doneAt || new Date().toISOString(); return true; } }],
+    result: [],
+    june:   [{ html: icon('arrow-left') + '이전', go: 'result', sub: true },
+             { html: icon('check') + '돌아보기 저장', go: 'result', check: function () { toast('6월 돌아보기를 저장했어요'); return true; } }]
+  };
+
+  function go(step) {
+    state.step = step; save();
+    document.body.classList.toggle('on-start', step === 'start');
+    document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
+    $('s-' + step).classList.add('active');
+
+    var inSteps = step === 'step1' || step === 'step2';
+    $('progressWrap').hidden = !inSteps;
+    if (inSteps) {
+      var n = step === 'step1' ? 1 : 2;
+      document.querySelectorAll('.step').forEach(function (s) {
+        var p = +s.dataset.p, num = s.querySelector('.num');
+        s.classList.toggle('active', p === n);
+        s.classList.toggle('done', p < n);
+        num.innerHTML = p < n ? '<svg class="i" style="width:12px;height:12px;stroke-width:3"><use href="#i-check"/></svg>' : p;
+      });
+      $('progressFill').style.width = (n * 50) + '%';
+    }
+
+    var inner = $('barInner'); inner.innerHTML = '';
+    (BARS[step] || []).forEach(function (b) {
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'btn btn-lg ' + (b.sub ? 'btn-outline' : 'btn-primary'); btn.innerHTML = b.html;
+      btn.addEventListener('click', function () { if (!b.check || b.check()) go(b.go); });
+      inner.appendChild(btn);
+    });
+    $('bar').style.display = (BARS[step] || []).length ? '' : 'none';
+
+    if (step === 'result') { renderResult(); renderEmail(); }
+    if (step === 'june') renderJune();
+    window.scrollTo(0, 0);
+  }
+
+  function makeNum(n) { var s = document.createElement('span'); s.className = 'num'; s.textContent = n; return s; }
+
+  // ---- result ----
+  function renderResult() {
+    $('r-word').textContent = trim(state.word);
+    $('r-good').textContent = trim(state.good);
+    $('r-good-wrap').style.display = trim(state.good) ? '' : 'none';
+    $('r-next').textContent = trim(state.nextWord);
+    $('r-next-wrap').style.display = trim(state.nextWord) ? '' : 'none';
+
+    var ul = $('r-goals'); ul.innerHTML = '';
+    var n = 0;
+    state.goals.forEach(function (g, i) {
+      if (!trim(g)) return;
+      var li = document.createElement('li');
+      var box = document.createElement('div');
+      var t = document.createElement('div'); t.className = 't'; t.textContent = trim(g);
+      box.appendChild(t);
+      var c = state.checks.jun[i];
+      if (c && STATUS[c]) {
+        var b = document.createElement('span'); b.className = 'badge';
+        b.innerHTML = '<span class="dot ' + c + '"></span>';
+        b.appendChild(document.createTextNode('6월 · ' + STATUS[c]));
+        box.appendChild(b);
+      }
+      li.appendChild(makeNum(++n)); li.appendChild(box); ul.appendChild(li);
+    });
+
+    var d = state.doneAt ? new Date(state.doneAt) : new Date();
+    $('r-date').textContent = d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0');
+
+    $('cal-jun').href = calUrl('[올해도 거친 세상속에서 살아남았다] 6월 목표 중간 돌아보기', '20270601', '20270602', '목표를 잘 실천하고 있는지 돌아보는 날');
+    $('cal-dec').href = calUrl('[올해도 거친 세상속에서 살아남았다] 2027 연말 돌아보기', '20271201', '20271202', '2027년에도 얼마나 해냈는지 확인하는 날');
+  }
+
+  function calUrl(title, start, end, desc) {
+    var d = state.doneAt ? new Date(state.doneAt) : new Date();
+    var NEXT = (d.getFullYear() + 1) + '년';   // 캘린더 글에서도 '내년' 대신 실제 연도로
+    var lines = [desc, ''];
+    if (trim(state.nextWord)) lines.push(NEXT + '의 나에게: ' + trim(state.nextWord), '');
+    lines.push(NEXT + '에 해보고 싶은 3가지');
+    filledGoals().forEach(function (g, i) { lines.push((i + 1) + '. ' + g); });
+    lines.push('', '내 기록 열기: ' + myLink('june'));
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent(title)
+      + '&dates=' + start + '/' + end
+      + '&details=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  function recordText() {
+    var d = state.doneAt ? new Date(state.doneAt) : new Date();
+    var THIS = d.getFullYear() + '년';         // 복사 글에서는 '올해' 대신 실제 연도로
+    var NEXT = (d.getFullYear() + 1) + '년';   // 복사 글에서는 '내년' 대신 실제 연도로
+    var L = [
+      '🥂 수고했어 ' + THIS + '도',
+      '거친 세상 속에서도 나름 잘 살아낸 나.',
+      '이 정도면 꽤 잘한 거 아닐까? ' + NEXT + '도 나답게 화이팅!',
+      '',
+      THIS + '의 나: ' + trim(state.word)
+    ];
+    if (trim(state.good)) L.push(THIS + '의 작은 성취: ' + trim(state.good));
+    if (trim(state.bad)) L.push('조금 아쉬웠던 일: ' + trim(state.bad));
+    if (trim(state.nextWord)) L.push('', NEXT + '의 나에게: ' + trim(state.nextWord));
+    L.push('', NEXT + '에 해보고 싶은 3가지');
+    state.goals.forEach(function (g, i) {
+      if (!trim(g)) return;
+      var c = state.checks.jun[i];
+      L.push('- ' + trim(g) + (c && STATUS[c] ? ' (6월 · ' + STATUS[c] + ')' : ''));
+    });
+    L.push('', NEXT + '에도 나답게, 하나씩!', d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0') + '에 작성');
+    return L.join('\n');
+  }
+
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return fallback(); });
+    }
+    return Promise.resolve(fallback());
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); return ok;
+    }
+  }
+
+  // ---- june ----
+  function renderJune() {
+    var list = $('june-list'); list.innerHTML = '';
+    if (!filledGoals().length) {
+      list.innerHTML = '<div class="empty">아직 정한 목표가 없어요.<br>먼저 나만의 송년회를 마쳐 주세요.</div>';
+      return;
+    }
+    var n = 0;
+    state.goals.forEach(function (g, i) {
+      if (!trim(g)) return;
+      var card = document.createElement('div'); card.className = 'card';
+      var body = document.createElement('div'); body.className = 'card-content'; body.style.paddingTop = '16px';
+      var t = document.createElement('div'); t.className = 'goal-title';
+      var label = document.createElement('span'); label.textContent = trim(g);
+      t.appendChild(makeNum(++n)); t.appendChild(label);
+      var grp = document.createElement('div'); grp.className = 'toggle-group'; grp.setAttribute('role', 'group'); grp.setAttribute('aria-label', trim(g) + ' 상태');
+      Object.keys(STATUS).forEach(function (k) {
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'toggle'; b.dataset.v = k;
+        b.innerHTML = '<span class="dot ' + k + '"></span>' + STATUS[k];
+        b.setAttribute('aria-pressed', state.checks.jun[i] === k ? 'true' : 'false');
+        b.addEventListener('click', function () {
+          state.checks.jun[i] = state.checks.jun[i] === k ? null : k; save();
+          grp.querySelectorAll('.toggle').forEach(function (x) { x.setAttribute('aria-pressed', state.checks.jun[i] === x.dataset.v ? 'true' : 'false'); });
+        });
+        grp.appendChild(b);
+      });
+      body.appendChild(t); body.appendChild(grp); card.appendChild(body); list.appendChild(card);
+    });
+  }
+
+  $('editBtn').addEventListener('click', function () { go('step1'); });
+  $('copyBtn').addEventListener('click', function () {
+    copy(recordText()).then(function (ok) { toast(ok ? '내 기록을 복사했어요' : '복사에 실패했어요. 다시 시도해 주세요'); });
+  });
+  $('junNow').addEventListener('click', function () { go('june'); });
+  $('myLinkBtn').addEventListener('click', function () {
+    copy(myLink()).then(function (ok) { toast(ok ? '내 기록 링크를 복사했어요' : '복사에 실패했어요. 다시 시도해 주세요'); });
+  });
+  $('shareBtn').addEventListener('click', function () {
+    var data = { title: '올해도 거친 세상속에서 살아남았다!', text: '올해도 거친 세상속에서 살아남았다! 나만의 송년회 시작하기', url: BASE_URL };
+    var canNativeShare = navigator.share && /^https?:$/.test(location.protocol);
+    if (canNativeShare) { navigator.share(data).catch(function () {}); return; }
+    copy(data.text + '\n' + BASE_URL).then(function (ok) { toast(ok ? '공유 링크를 복사했어요 (기록은 담기지 않아요)' : '복사에 실패했어요. 다시 시도해 주세요'); });
+  });
+
+  // ---- 점검 메일 신청 ----
+  function renderEmail() {
+    var on = !!SUBSCRIBE_URL;
+    $('emailBadge').hidden = on;
+    $('emailDesc').textContent = on
+      ? '2027년 6월 1일, 12월 1일 오전 9시에 내 목표와 내 기록 링크를 메일로 보내 드려요.'
+      : '메일 발송 기능을 준비하고 있어요. 지금은 캘린더에 추가해 두세요.';
+    ['email', 'emailSubmit', 'consent'].forEach(function (id) { $(id).disabled = !on; });
+    $('alertMail').hidden = !on;
+    var done = on && !!state.email;
+    $('emailForm').hidden = done;
+    $('emailDone').hidden = !done;
+    if (done) $('emailDoneAddr').textContent = state.email;
+  }
+  $('emailForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var err = $('emailError'); err.textContent = '';
+    var email = trim($('email').value).toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = '이메일 주소를 확인해 주세요.'; $('email').focus(); return; }
+    if (!$('consent').checked) { err.textContent = '개인정보 수집·이용에 동의해야 메일을 받을 수 있어요.'; return; }
+    if (location.protocol !== 'https:') { err.textContent = '사이트를 웹에 올린 뒤에 신청할 수 있어요. (지금은 내 컴퓨터 파일이라 메일 속 링크가 열리지 않아요)'; return; }
+    var btn = $('emailSubmit'); btn.disabled = true; btn.textContent = '신청 중…';
+    fetch(SUBSCRIBE_URL, {
+      method: 'POST',
+      body: JSON.stringify({ email: email, consent: true, nextWord: trim(state.nextWord), goals: state.goals.map(trim), link: myLink('june'), website: $('emailHp').value })
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      if (!res || !res.ok) throw new Error(res && res.error);
+      state.email = email; save(); renderEmail(); toast('메일 알림을 신청했어요');
+    }).catch(function (e2) {
+      var msg = { invalid_email: '이메일 주소를 확인해 주세요.', no_goals: '목표를 하나 이상 적어야 신청할 수 있어요.', invalid_link: '사이트 주소 설정이 맞지 않아요. 관리자에게 알려 주세요.', site_url_not_set: '메일 서버 설정이 아직 끝나지 않았어요.' }[e2 && e2.message];
+      err.textContent = msg || '신청하지 못했어요. 잠시 뒤에 다시 시도해 주세요.';
+    }).finally(function () { btn.disabled = false; btn.textContent = '알림 신청'; });
+  });
+  $('emailChange').addEventListener('click', function () {
+    $('email').value = state.email || ''; $('consent').checked = false;
+    $('emailForm').hidden = false; $('emailDone').hidden = true; $('email').focus();
+  });
+
+  function fillInputs() {
+    document.querySelectorAll('[data-key]').forEach(function (el) { el.value = state[el.dataset.key] || ''; updateCounter(el); });
+    document.querySelectorAll('[data-goal]').forEach(function (el) { el.value = state.goals[+el.dataset.goal] || ''; updateCounter(el); });
+  }
+  function closeImport() { $('importDlg').hidden = true; pendingImport = null; }
+  $('importYes').addEventListener('click', function () {
+    state = pendingImport; save(); fillInputs(); closeImport();
+    go(wantJune ? 'june' : 'result'); toast('링크의 기록을 불러왔어요');
+  });
+  $('importNo').addEventListener('click', function () { closeImport(); toast('지금 기록을 그대로 둘게요'); });
+
+  var resetArmed = false, resetTimer;
+  var resetLabel = function (btn, text, warn) { btn.querySelector('span').textContent = text; btn.classList.toggle('danger', !!warn); };
+  $('resetBtn').addEventListener('click', function () {
+    var btn = this;
+    var hasData = trim(state.word) || filledGoals().length || trim(state.good) || trim(state.bad) || trim(state.nextWord);
+    if (hasData && !resetArmed) {
+      resetArmed = true; resetLabel(btn, '지우고 새로 쓸까요?', true);
+      resetTimer = setTimeout(function () { resetArmed = false; resetLabel(btn, '새 기록 작성'); }, 3000);
+      return;
+    }
+    clearTimeout(resetTimer); resetArmed = false; resetLabel(btn, '새 기록 작성');
+    state = empty();
+    document.querySelectorAll('[data-key]').forEach(function (el) { el.value = ''; updateCounter(el); });
+    document.querySelectorAll('[data-goal]').forEach(function (el) { el.value = ''; updateCounter(el); });
+    clearHint('q-word', 'hint-word'); clearHint('q-goals', 'hint-goals');
+    save(); go('start'); toast('새 기록을 시작해요');
+  });
+
+  // ---- initial screen ----
+  var now = new Date();
+  var isJune = now.getFullYear() >= 2027 && now.getMonth() === 5;
+  var start;
+  if (wantJune && state.doneAt) start = 'june';
+  else if (isJune && state.doneAt && !state.checks.jun.some(Boolean)) start = 'june';
+  else if (state.doneAt && (state.step === 'result' || state.step === 'june')) start = 'result';
+  else start = BARS[state.step] ? state.step : 'start';
+  if (start === 'result' && !state.doneAt) start = 'start';
+  go(start);
+  if (linkRecord && !pendingImport) toast('링크의 기록을 불러왔어요');
+  if (pendingImport) { $('importDlg').hidden = false; $('importYes').focus(); }
+})();
+</script>
+</body>
+</html>
